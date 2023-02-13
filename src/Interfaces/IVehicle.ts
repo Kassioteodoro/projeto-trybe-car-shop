@@ -1,5 +1,5 @@
 export default interface IVehicle {
-  id: string,
+  id?: string,
   model: string,
   year: number,
   color: string,
