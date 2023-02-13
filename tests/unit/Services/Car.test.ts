@@ -1,6 +1,8 @@
 // import { expect } from 'chai';
-// import sinon from 'sinon';
-// import { Model } from 'mongoose';
+import sinon from 'sinon';
+import { Model } from 'mongoose';
+import Car from '../../../src/Domains/Car';
+// import ICar from '../../../src/Interfaces/ICar';
 
 describe('testando as funcionalidades de Carros', function () {
   describe('É possivel cadastras um carro', function () {
@@ -16,17 +18,18 @@ describe('testando as funcionalidades de Carros', function () {
       //   seatsQty: 5,
       // };
 
-      // const returnValue: Car = new Car(
-      //   'Marea',
-      //   2002,
-      //   'Black',
-      //   true,
-      //   15.990,
-      //   4,
-      //   5,
-      // );
+      const returnValue: Car = new Car({
+        id: '6348513f34c397abcad040b2',
+        model: 'Marea',
+        year: 2002,
+        color: 'Black',
+        status: true,
+        buyValue: 15.990,
+        doorsQty: 4,
+        seatsQty: 5,
+      });
 
-      // sinon.stub(Model, 'create').resolves(returnValue);
+      sinon.stub(Model, 'create').resolves(returnValue);
 
       // execuçao
       // const service = new RegisterService();
