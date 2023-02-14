@@ -27,6 +27,7 @@ export default class CarController {
     };
 
     const newCar = await this.service.register(car);
+    
     return this.res.status(201).json(newCar);
   }
 }

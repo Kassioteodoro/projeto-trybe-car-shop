@@ -20,6 +20,21 @@ export default class CarService {
     }
   }
   async register(obj : ICar) {
+    if (!obj.status) {
+      const newCar = {
+        model: obj.model,
+        year: obj.year,
+        color: obj.color,
+        status: false,
+        buyValue: obj.buyValue,
+        doorsQty: obj.doorsQty,
+        seatsQty: obj.seatsQty,
+      };
+      const carODM = new CarODM();
+      const result = await carODM.create(newCar);
+
+      return this.createCarDomain(result);
+    }
     // puxar a model
     const carODM = new CarODM();
     // registrar o carro
