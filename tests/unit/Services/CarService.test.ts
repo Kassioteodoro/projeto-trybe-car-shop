@@ -42,7 +42,7 @@ describe('testando as funcionalidades de CarService', function () {
   });
   describe('É possivel listar os carros da collection cars', function () {
     const idValid = '6348513f34c397abcad040b2';
-    const idNotFoundValid = '9998513f34c999abcad040b2';
+    const idNotFoundValid = '1111222233330000ffffcccc';
     const idInvalid = '634852326b35b5XX';
 
     const returnValueAll: Car[] = [new Car({
@@ -107,7 +107,7 @@ describe('testando as funcionalidades de CarService', function () {
         await service.getById(idNotFoundValid);
       } catch (error) {
         // teste
-        expect((error as Error).message).to.be.equal('Vehicle not found');
+        expect((error as Error).message).to.be.equal('Car not found');
       }
     });
     it('nao e possivel listar um carro com id invalido', async function () {
