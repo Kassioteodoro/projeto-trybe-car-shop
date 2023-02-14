@@ -41,60 +41,62 @@ describe('testando as funcionalidades de CarService', function () {
     });
   });
   describe('É possivel listar os carros da collection cars', function () {
-    // const idValid = '6348513f34c397abcad040b2';
+    const idValid = '6348513f34c397abcad040b2';
     // const idNotFoundValid = '6348513f34c397abcad040b2';
     // const idInvalid = '634852326b35b5XX';
 
-    // const returnValueAll: Car[] = [new Car({
-    //   id: '6348513f34c397abcad040b2',
-    //   model: 'Marea',
-    //   year: 2002,
-    //   color: 'Black',
-    //   status: true,
-    //   buyValue: 15.990,
-    //   doorsQty: 4,
-    //   seatsQty: 5,
-    // }),
-    // new Car({
-    //   id: '634852326b35b59438fbea2f',
-    //   model: 'Marea',
-    //   year: 2002,
-    //   color: 'Black',
-    //   status: true,
-    //   buyValue: 15.99,
-    //   doorsQty: 4,
-    //   seatsQty: 5,
-    // }),
-    // ];
+    const returnValueAll: Car[] = [new Car({
+      id: '6348513f34c397abcad040b2',
+      model: 'Marea',
+      year: 2002,
+      color: 'Black',
+      status: true,
+      buyValue: 15.990,
+      doorsQty: 4,
+      seatsQty: 5,
+    }),
+    new Car({
+      id: '634852326b35b59438fbea2f',
+      model: 'Marea',
+      year: 2002,
+      color: 'Black',
+      status: true,
+      buyValue: 15.99,
+      doorsQty: 4,
+      seatsQty: 5,
+    }),
+    ];
 
-    // const returnValueOne: Car = new Car({
-    //   id: '6348513f34c397abcad040b2',
-    //   model: 'Marea',
-    //   year: 2002,
-    //   color: 'Black',
-    //   status: true,
-    //   buyValue: 15.990,
-    //   doorsQty: 4,
-    //   seatsQty: 5,
-    // });
+    const returnValueOne: Car = new Car({
+      id: '6348513f34c397abcad040b2',
+      model: 'Marea',
+      year: 2002,
+      color: 'Black',
+      status: true,
+      buyValue: 15.990,
+      doorsQty: 4,
+      seatsQty: 5,
+    });
 
     it('e possivel listar todos os carros em cars', async function () {
-      // // cenario
-      // sinon.stub(Model, 'find').resolves(returnValueAll);
-      // // execução
-      // const service = new CarService();
-      // const result = await service.getAll();
-      // // teste
-      // expect(result).to.be.deep.equal(returnValueAll);
+      // cenario
+      const model = sinon.stub(Model, 'find').resolves(returnValueAll);
+      // execução
+      const service = new CarService();
+      const result = await service.getAll();
+      // teste
+      expect(model.calledOnce).to.be.equal(true);
+      expect(result).to.be.deep.equal(returnValueAll);
     });
     it('e possivel listar um carro em especifico', async function () {
-      // // cenario
-      // sinon.stub(Model, 'findOne').resolves(returnValueOne);
-      // // execução
-      // const service = new CarService();
-      // const result = await service.getById(idValid);
-      // // teste
-      // expect(result).to.be.deep.equal(returnValueOne);
+      // cenario
+      const model = sinon.stub(Model, 'findOne').resolves(returnValueOne);
+      // execução
+      const service = new CarService();
+      const result = await service.getById(idValid);
+      // teste
+      expect(model.calledOnce).to.be.equal(true);
+      expect(result).to.be.deep.equal(returnValueOne);
     });
     it(' nao e possivel listar um carro que nao existe', async function () {
       // // cenario

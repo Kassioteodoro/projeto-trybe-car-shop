@@ -3,7 +3,7 @@ import ICar from '../Interfaces/ICar';
 import CarODM from '../Models/CarODM';
 
 export default class CarService {
-  private createCarDomain(car: ICar) {
+  private createCarDomain(car: ICar | null) {
     if (car) {
       return new Car(
         {
@@ -20,27 +20,35 @@ export default class CarService {
     }
   }
   async register(obj : ICar) {
-    if (!obj.status) {
-      const newCar = {
-        model: obj.model,
-        year: obj.year,
-        color: obj.color,
-        status: false,
-        buyValue: obj.buyValue,
-        doorsQty: obj.doorsQty,
-        seatsQty: obj.seatsQty,
-      };
-      const carODM = new CarODM();
-      const result = await carODM.create(newCar);
-
-      return this.createCarDomain(result);
-    }
     // puxar a model
     const carODM = new CarODM();
     // registrar o carro
     const result = await carODM.create(obj);
     // criar um dominio de carro
     // retornar o dominio
+    return this.createCarDomain(result);
+  }
+
+  async getAll() {
+    // puxar a model
+    const carODM = new CarODM();
+    // registrar o carro
+    const result = await carODM.getAll();
+    // criar um dominio de carro
+    // retornar o dominio
+
+    const list = result.map((car) => this.createCarDomain(car));
+      
+    return list;
+  }
+  async getById(id: string) {
+    // puxar a model
+    const carODM = new CarODM();
+    // registrar o carro
+    const result = await carODM.getById(id);
+    // criar um dominio de carro
+    // retornar o dominio
+      
     return this.createCarDomain(result);
   }
 }

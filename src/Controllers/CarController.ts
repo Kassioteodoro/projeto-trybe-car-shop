@@ -20,7 +20,7 @@ export default class CarController {
       model: this.req.body.model,
       year: this.req.body.year,
       color: this.req.body.color,
-      status: this.req.body.status,
+      status: this.req.body.status || false,
       buyValue: this.req.body.buyValue,
       doorsQty: this.req.body.doorsQty,
       seatsQty: this.req.body.seatsQty,
@@ -29,5 +29,17 @@ export default class CarController {
     const newCar = await this.service.register(car);
     
     return this.res.status(201).json(newCar);
+  }
+
+  public async getAll() {
+    const list = await this.service.getAll();
+    
+    return this.res.status(200).json(list);
+  }
+
+  public async getById() {
+    const car = await this.service.getById(this.req.params.id);
+    
+    return this.res.status(200).json(car);
   }
 }
