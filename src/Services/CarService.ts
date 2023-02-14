@@ -40,4 +40,10 @@ export default class CarService {
     const result = await carODM.getById(id);
     return this.createCarDomain(result);
   }
+
+  async update(id: string, obj: ICar) {
+    const carODM = new CarODM();
+    const result = await carODM.update(id, obj);
+    return this.createCarDomain(result);
+  }
 }

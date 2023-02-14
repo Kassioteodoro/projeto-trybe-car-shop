@@ -113,6 +113,43 @@ describe('testando as funcionalidades de MotorcycleService', function () {
       }
     });
   });
+  describe('É possivel atuallizar as motos da collection motorcycles', function () {
+    it('com sucesso', async function () {
+      const id = '634852326b35b59438fbea2f';
+
+      const inputValue: IMotorcycle = {
+        model: hondaModel1,
+        year: 2014,
+        color: 'Red',
+        status: true,
+        buyValue: 45.000,
+        category: 'Street',
+        engineCapacity: 600,
+      };
+
+      const returnValue: Motorcycle = new Motorcycle({
+        id: '634852326b35b59438fbea2f',
+        model: hondaModel1,
+        year: 2014,
+        color: 'Red',
+        status: true,
+        buyValue: 45.000,
+        category: 'Street',
+        engineCapacity: 600,
+      });
+
+      // cenario
+      const model = sinon.stub(Model, 'updateOne').resolves();
+      const model2 = sinon.stub(Model, 'findOne').resolves(returnValue);
+      // execução
+      const service = new MotorcycleService();
+      const result = await service.update(id, inputValue);
+      // teste
+      expect(model.calledOnce).to.be.equal(true);
+      expect(model2.calledOnce).to.be.equal(true);
+      expect(result).to.be.deep.equal(returnValue);
+    });
+  });
   afterEach(function () {
     sinon.restore();
   });

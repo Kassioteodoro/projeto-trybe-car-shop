@@ -123,6 +123,43 @@ describe('testando as funcionalidades de CarService', function () {
       }
     });
   });
+  describe('É possivel atuallizar os carros da collection cars', function () {
+    it('com sucesso', async function () {
+      const id = '634852326b35b59438fbea2f';
+
+      const inputValue: ICar = {
+        model: 'Marea',
+        year: 1992,
+        color: 'Red',
+        status: true,
+        buyValue: 12.000,
+        doorsQty: 2,
+        seatsQty: 5,
+      };
+
+      const returnValueOne: Car = new Car({
+        id: '634852326b35b59438fbea2f',
+        model: 'Marea',
+        year: 1992,
+        color: 'Red',
+        status: true,
+        buyValue: 12.000,
+        doorsQty: 2,
+        seatsQty: 5,
+      });
+
+      // cenario
+      const model = sinon.stub(Model, 'updateOne').resolves();
+      const model2 = sinon.stub(Model, 'findOne').resolves(returnValueOne);
+      // execução
+      const service = new CarService();
+      const result = await service.update(id, inputValue);
+      // teste
+      expect(model.calledOnce).to.be.equal(true);
+      expect(model2.calledOnce).to.be.equal(true);
+      expect(result).to.be.deep.equal(returnValueOne);
+    });
+  });
   afterEach(function () {
     sinon.restore();
   });

@@ -29,11 +29,18 @@ abstract class AbstractODM<T> {
     if (!result && this.modelName === 'Car') throw Error('Car not found');
     if (!result && this.modelName === 'Motorcycle') throw Error('Motorcycle not found');
   }
-
+  
   public async getById(id: string): Promise<T | null> {
     if (!isValidObjectId(id)) throw Error('Invalid mongo id');
     const result = await this.model.findOne({ id });
     this.notFound(result);
+    return result;
+  }
+
+  public async update(_id: string, obj: Partial<T>) {
+    if (!isValidObjectId(_id)) throw Error('Invalid Mongo id');
+    await this.model.updateOne({ _id }, { ...obj });
+    const result = await this.model.findOne({ _id });
     return result;
   }
 }

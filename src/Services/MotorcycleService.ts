@@ -41,4 +41,10 @@ export default class MotorcycleService {
     const result = await motorcycleODM.getById(id);
     return this.createMotorcycleDomain(result);
   }
+
+  async update(id: string, obj: IMotorcycle) {
+    const motorcycleODM = new MotorcycleODM();
+    const result = await motorcycleODM.update(id, obj);
+    return this.createMotorcycleDomain(result);
+  }
 }
