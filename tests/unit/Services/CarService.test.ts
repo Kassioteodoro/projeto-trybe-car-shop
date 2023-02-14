@@ -107,7 +107,7 @@ describe('testando as funcionalidades de CarService', function () {
         await service.getById(idNotFoundValid);
       } catch (error) {
         // teste
-        expect((error as Error).message).to.be.equal('Car not found');
+        expect((error as Error).message).to.be.equal('Vehicle not found');
       }
     });
     it('nao e possivel listar um carro com id invalido', async function () {

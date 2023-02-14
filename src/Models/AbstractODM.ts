@@ -25,10 +25,15 @@ abstract class AbstractODM<T> {
     return this.model.find();
   }
 
+  private notFound(result: T | null) {
+    if (!result && this.modelName === 'Car') throw Error('Car not found');
+    if (!result && this.modelName === 'Motorcycle') throw Error('Motorcycle not found');
+  }
+
   public async getById(id: string): Promise<T | null> {
     if (!isValidObjectId(id)) throw Error('Invalid mongo id');
     const result = await this.model.findOne({ id });
-    if (!result) throw Error('Car not found');
+    this.notFound(result);
     return result;
   }
 }
