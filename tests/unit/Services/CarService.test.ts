@@ -5,7 +5,7 @@ import Car from '../../../src/Domains/Car';
 import ICar from '../../../src/Interfaces/ICar';
 import CarService from '../../../src/Services/CarService';
 
-describe('testando as funcionalidades de Carros', function () {
+describe('testando as funcionalidades de CarService', function () {
   describe('É possivel cadastras um carro', function () {
     it('com sucesso', async function () {
       // cenario

@@ -15,7 +15,7 @@ export default class CarController {
     this.service = new CarService();
   }
 
-  public async create() {
+  public async register() {
     const car: ICar = {
       model: this.req.body.model,
       year: this.req.body.year,
