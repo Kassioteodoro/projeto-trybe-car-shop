@@ -3,6 +3,7 @@ import {
   models,
   Schema,
   model,
+  isValidObjectId,
 } from 'mongoose';
 
 abstract class AbstractODM<T> {
@@ -25,7 +26,10 @@ abstract class AbstractODM<T> {
   }
 
   public async getById(id: string): Promise<T | null> {
-    return this.model.findOne({ id });
+    if (!isValidObjectId(id)) throw Error('Invalid mongo id');
+    const result = this.model.findOne({ id });
+    if (!result) throw Error('Car not found');
+    return result;
   }
 }
 

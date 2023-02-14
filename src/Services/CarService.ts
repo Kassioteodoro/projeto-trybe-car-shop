@@ -30,25 +30,14 @@ export default class CarService {
   }
 
   async getAll() {
-    // puxar a model
     const carODM = new CarODM();
-    // registrar o carro
     const result = await carODM.getAll();
-    // criar um dominio de carro
-    // retornar o dominio
-
     const list = result.map((car) => this.createCarDomain(car));
-      
     return list;
   }
   async getById(id: string) {
-    // puxar a model
     const carODM = new CarODM();
-    // registrar o carro
     const result = await carODM.getById(id);
-    // criar um dominio de carro
-    // retornar o dominio
-      
     return this.createCarDomain(result);
   }
 }

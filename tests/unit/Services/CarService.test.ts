@@ -42,8 +42,8 @@ describe('testando as funcionalidades de CarService', function () {
   });
   describe('É possivel listar os carros da collection cars', function () {
     const idValid = '6348513f34c397abcad040b2';
-    // const idNotFoundValid = '6348513f34c397abcad040b2';
-    // const idInvalid = '634852326b35b5XX';
+    const idNotFoundValid = '9998513f34c999abcad040b2';
+    const idInvalid = '634852326b35b5XX';
 
     const returnValueAll: Car[] = [new Car({
       id: '6348513f34c397abcad040b2',
@@ -99,28 +99,28 @@ describe('testando as funcionalidades de CarService', function () {
       expect(result).to.be.deep.equal(returnValueOne);
     });
     it(' nao e possivel listar um carro que nao existe', async function () {
-      // // cenario
-      // sinon.stub(Model, 'findOne').resolves(undefined);
-      // // execução
-      // try {
-      //   const service = new CarService();
-      //   await service.getById(idNotFoundValid);
-      // } catch (error) {
-      //   // teste
-      //   expect((error as Error).message).to.be.equal('Car not found');
-      // }
+      // cenario
+      sinon.stub(Model, 'findOne').resolves(undefined);
+      // execução
+      try {
+        const service = new CarService();
+        await service.getById(idNotFoundValid);
+      } catch (error) {
+        // teste
+        expect((error as Error).message).to.be.equal('Car not found');
+      }
     });
     it('nao e possivel listar um carro com id invalido', async function () {
-      // // cenario
-      // sinon.stub(Model, 'findOne').resolves(undefined);
-      // // execução
-      // try {
-      //   const service = new CarService();
-      //   await service.getById(idInvalid);
-      // } catch (error) {
-      //   // teste
-      //   expect((error as Error).message).to.be.equal('Invalid mongo id');
-      // }
+      // cenario
+      sinon.stub(Model, 'findOne').resolves(undefined);
+      // execução
+      try {
+        const service = new CarService();
+        await service.getById(idInvalid);
+      } catch (error) {
+        // teste
+        expect((error as Error).message).to.be.equal('Invalid mongo id');
+      }
     });
   });
   afterEach(function () {
