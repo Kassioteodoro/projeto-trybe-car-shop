@@ -36,11 +36,8 @@ export default class CarService {
     return list;
   }
   async getById(id: string) {
-    console.log('id', id);
     const carODM = new CarODM();
     const result = await carODM.getById(id);
-    console.log('service', result);
-    
     return this.createCarDomain(result);
   }
 
