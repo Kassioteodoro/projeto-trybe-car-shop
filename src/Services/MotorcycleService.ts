@@ -37,8 +37,11 @@ export default class MotorcycleService {
   }
   
   async getById(id: string) {
+    console.log('id', id);
+
     const motorcycleODM = new MotorcycleODM();
     const result = await motorcycleODM.getById(id);
+    console.log('service', result);
     return this.createMotorcycleDomain(result);
   }
 
