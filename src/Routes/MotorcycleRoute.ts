@@ -15,7 +15,7 @@ MotorcycleRouter.get(
   '/motorcycles/:id',
   (req, res, next) => new MotorcycleController(req, res, next).getById(),
 );
-MotorcycleRouter.patch(
+MotorcycleRouter.put(
   '/motorcycles/:id',
   (req, res, next) => new MotorcycleController(req, res, next).update(),
 );

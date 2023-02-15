@@ -38,9 +38,10 @@ abstract class AbstractODM<T> {
   }
 
   public async update(_id: string, obj: Partial<T>) {
-    if (!isValidObjectId(_id)) throw Error('Invalid Mongo id');
+    if (!isValidObjectId(_id)) throw Error('Invalid mongo id');
     await this.model.updateOne({ _id }, { ...obj });
     const result = await this.model.findOne({ _id });
+    this.notFound(result);
     return result;
   }
 }
