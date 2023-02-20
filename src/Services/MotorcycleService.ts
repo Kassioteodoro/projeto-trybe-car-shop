@@ -20,12 +20,8 @@ export default class MotorcycleService {
     }
   }
   async register(obj : IMotorcycle) {
-    // puxar a model
     const motorcycleODM = new MotorcycleODM();
-    // registrar o carro
     const result = await motorcycleODM.create(obj);
-    // criar um dominio de carro
-    // retornar o dominio
     return this.createMotorcycleDomain(result);
   }
 

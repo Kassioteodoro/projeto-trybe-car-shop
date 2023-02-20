@@ -20,12 +20,8 @@ export default class CarService {
     }
   }
   async register(obj : ICar) {
-    // puxar a model
     const carODM = new CarODM();
-    // registrar o carro
     const result = await carODM.create(obj);
-    // criar um dominio de carro
-    // retornar o dominio
     return this.createCarDomain(result);
   }
 
