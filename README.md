@@ -1,45 +1,49 @@
-# My Awesome Project
+# Trybe Car Shop
 
 # Contexto
-Este projeto trata-se de uma ferramenta de back-office para armazenar e buscar dados de erros que ocorreram com clientes.
+Este projeto trata-se de uma API construida nos principios de POO para gerenciar uma concessionaria de veiculos.
+
+Esse projeto e desenvolvido pela trybe, o objetivo é poder testar a capacidade de seus alunos de construir um backend orientado a objetos utilizando ferramentas como express e Docker e um banco NoSQL, neste caso o MongoDB.
+
+### os arquivos aos quais eu sou responsavel:
+* os presentes nas pastas `src` & `tests`
+
+### :construction: Este projeto ainda sera refatorado :construction:
 
 ## Técnologias usadas
-
-Front-end:
-> Desenvolvido usando: React, Redux, CSS3, HTML5, Redis, ES6
-
 Back-end:
-> Desenvolvido usando: NodeJS, ExpressJS, MongoDB, MYSQL, ES6
+> Desenvolvido usando: NodeJS, TypeScript, ExpressJS, MongoDB, Mongoose
+
+Testes:
+> Desenvolvido usando: Mocha, Sinon, Chai
 
 
 ## Instalando Dependências
 
-> Backend
 ```bash
-cd api/ 
 npm install
 ``` 
-> Frontend
+
+## Utilizando Docker
+  - Lembre-se de parar o `mongo` se estiver usando localmente na porta padrão (`27017`), ou adapte, caso queria fazer uso da aplicação em containers
+  - Esses serviços irão inicializar um container chamado `car_shop` e outro chamado `car_shop_db`.
 ```bash
-cd src/
+docker-compose up -d
+``` 
+```bash
+docker exec -it car_shop bash
+``` 
+```bash
 npm install
 ``` 
 ## Executando aplicação
 
-* Para rodar o back-end:
+  ```
+  npm run dev
+  ```
 
-  ```
-  cd api/ && npm start
-  ```
-* Para rodar o front-end:
-
-  ```
-    cd src/ && npm start
-  ```
 
 ## Executando Testes
-
-* Para rodar todos os testes:
 
   ```
     npm test
